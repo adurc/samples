@@ -1,0 +1,9 @@
+type User @entity(schema: "usr") {
+  id: ID! @pk(generated: true)
+  name: String! @column(length: 100)
+  firstName: String @column(length: 100)
+  lastName: String @column(length: 100)
+  email: String! @column(length: 256)
+  createdDate: Date!
+  password: String! @column(length: 60)
+}
