@@ -1,4 +1,5 @@
 const express = require('express');
+const ApolloServer = require('apollo-server-express').ApolloServer;
 const dotenv = require('dotenv');
 const { AdurcBuilder } = require('@adurc/core');
 const { SqlServerDriver } = require('@adurc/driver-mssql');
@@ -34,7 +35,11 @@ async function bootstrap() {
         adurc,
     });
 
-    reactAdmin.applyMiddleware({ app, path: '/graphql' });
+    const apollo = reactAdmin.useApollo(ApolloServer, {
+        playground: true
+    });
+
+    apollo.applyMiddleware({ app, path: '/graphql' });
 
     app.listen(3000);
 

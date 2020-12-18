@@ -11,9 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "@adurc/core": "0.0.2",
-    "@adurc/driver-mssql": "0.0.2",
-    "@adurc/exposure-react-admin": "0.0.3",
+    "@adurc/driver-mssql": "0.0.4",
+    "@adurc/exposure-react-admin": "^0.1.0",
     "@adurc/introspector-graphql": "0.0.3",
+    "apollo-server-express": "^2.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1"
   }
