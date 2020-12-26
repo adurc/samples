@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@adurc/core": "0.0.2",
+    "@adurc/core": "^0.1.0",
     "@adurc/driver-mssql": "0.0.4",
     "@adurc/exposure-react-admin": "^0.1.0",
     "@adurc/introspector-graphql": "0.0.3",

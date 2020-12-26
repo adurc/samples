@@ -1,9 +1,9 @@
-type User @entity(schema: "usr") {
-  id: ID! @pk(generated: true)
-  name: String! @column(length: 100)
-  firstName: String @column(length: 100)
-  lastName: String @column(length: 100)
-  email: String! @column(length: 256)
+type User @mssql_entity(schema: "usr") {
+  id: ID! @mssql_column(generated: true)
+  name: String!
+  firstName: String
+  lastName: String
+  email: String!
   createdDate: Date!
-  password: String! @column(length: 60)
+  password: String!
 }
