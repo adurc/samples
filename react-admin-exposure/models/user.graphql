@@ -1,5 +1,5 @@
 type User @mssql_entity(schema: "usr") {
-  id: ID! @mssql_column(generated: true)
+  id: ID! @ra_pk @mssql_column(generated: true)
   name: String!
   firstName: String
   lastName: String

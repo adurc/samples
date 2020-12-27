@@ -1,6 +1,7 @@
 const express = require('express');
 const ApolloServer = require('apollo-server-express').ApolloServer;
 const dotenv = require('dotenv');
+const { BuilderStage } = require('@adurc/core/dist/interfaces/builder.generator');
 const { AdurcBuilder } = require('@adurc/core/dist/builder');
 const { SqlServerDriver } = require('@adurc/driver-mssql');
 const { ReactAdminExposure } = require('@adurc/exposure-react-admin');
@@ -39,23 +40,31 @@ async function bootstrap() {
         (apollo) => apollo.applyMiddleware({ app, path: '/graphql' })
     ));
 
-    const adurc = await builder.build();
-
-    const users = adurc.client.user.findMany({
-        select: {
-            name: true,
-        }
+    builder.use(function* customGenerator(context) {
+        console.log('[sample] customer generator: builder before init')
+        yield BuilderStage.OnInit;
+        console.log('[sample] customer generator: models found ' + context.models.length);
     });
 
-    for (const user of users) {
-        console.log(`User ${user.name}`);
-    }
+    const adurc = await builder.build();
 
     app.listen(3000);
 
     console.log(
-        'Serving the GraphQL Playground on http://localhost:3000/graphql',
+        '[sample] Serving the GraphQL Playground on http://localhost:3000/graphql',
     );
+
+    console.log('[sample] Example using adurc directly like prisma:');
+
+    const users = await adurc.client.user.findMany({
+        select: {
+            name: true,
+        },
+    });
+
+    for (const user of users) {
+        console.log(`[sample] User ${JSON.stringify(user)}`);
+    }
 
     return app;
 }
