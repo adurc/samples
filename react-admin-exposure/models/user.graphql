@@ -1,3 +1,9 @@
+type UserAgency @mssql_entity(schema: "usr") {
+  userId: ID @mssql_column(primary: true)
+  agencyId: ID @mssql_column(primary: true)
+}
+
+
 type User @mssql_entity(schema: "usr") {
   id: ID! @ra_pk @mssql_column(primary: true, identity: true)
   name: String!
@@ -8,4 +14,5 @@ type User @mssql_entity(schema: "usr") {
   password: String! @ra_omit
   activeAgencyId: ID
   activeAgency: Agency @mssql_manyToOne(joinColumn: "activeAgencyId", inverseColumn: "id")
+  agencies: [Agency] @mssql_manyToMany(manyEntity: "UserAgency", joinColumn: "id", manyJoinColumn: "userId", manyInverseColumn: "agencyId", inverseColumn: "id")
 }
