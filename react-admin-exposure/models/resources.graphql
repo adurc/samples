@@ -1,0 +1,4 @@
+type Culture @mssql_entity(schema: "res"){
+    code: String! @ra_pk @mssql_column(primary: true)
+    name: String!
+}

@@ -1,0 +1,11 @@
+type TypedAddress @mssql_entity(schema: "geo"){
+ id: Int! @ra_pk @mssql_column(primary: true, identity: true)   
+ road: String
+ town: String
+ province: String
+ postalCode: String
+ latitude: Float
+ longitude: Float
+ line1: String
+ line2: String
+}

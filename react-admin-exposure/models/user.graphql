@@ -4,6 +4,8 @@ type User @mssql_entity(schema: "usr") {
   firstName: String
   lastName: String
   email: String!
-  createdDate: Date!
-  password: String!
+  createdDate: Date! @mssql_column(default: "GETDATE()")
+  password: String! @ra_omit
+  activeAgencyId: ID
+  activeAgency: Agency @mssql_manyToOne(joinColumn: "activeAgencyId", inverseColumn: "id")
 }

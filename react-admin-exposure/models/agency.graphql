@@ -1,0 +1,17 @@
+type AgencyType @mssql_entity(schema: "cus"){
+  id: Int! @ra_pk @mssql_column(primary: true, identity: true)
+  name: String!
+}
+
+type Agency @mssql_entity(schema: "cus") {
+  id: ID! @ra_pk @mssql_column(primary: true, identity: true)
+  name: String!
+  createDate: Date! @ra_has_default @mssql_column(default: "GETDATE()")
+  ownerUserId: ID!
+  agencyTypeId: Int!
+  acronym: String!
+  alias: String!
+  typedAddressId: Int
+
+  type: AgencyType @mssql_manyToOne(joinColumn: "agencyTypeId", inverseColumn: "id")
+}

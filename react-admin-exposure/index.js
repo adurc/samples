@@ -48,7 +48,7 @@ async function bootstrap() {
 
     const adurc = await builder.build();
 
-    app.listen(3000);
+    app.listen(3100);
 
     console.log(
         '[sample] Serving the GraphQL Playground on http://localhost:3000/graphql',

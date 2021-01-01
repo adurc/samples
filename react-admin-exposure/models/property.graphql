@@ -1,0 +1,10 @@
+type Property @mssql_entity(schema: "pro") {
+  id: ID! @ra_pk @mssql_column(primary: true, identity: true)
+  agencyId: String!
+  createdDate: Date! @mssql_column(default: "GETDATE()")
+  reference: String!
+  archivedDate: Date
+  inExclusivity: Boolean!
+  originalAgencyReference: String
+  agency: Agency! @mssql_manyToOne(joinColumn: "agencyId", inverseColumn: "id")
+}
