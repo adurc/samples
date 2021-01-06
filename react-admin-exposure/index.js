@@ -56,7 +56,7 @@ async function bootstrap() {
 
     console.log('[sample] Example using adurc directly like prisma:');
 
-    const usersTask = adurc.client.user.findMany({
+    const users = await adurc.user.findMany({
         select: {
             name: true,
         },
@@ -68,9 +68,7 @@ async function bootstrap() {
             }
         }
     });
-
-    const users = await usersTask;
-
+    
     for (const user of users) {
         console.log(`[sample] User ${JSON.stringify(user)}`);
     }

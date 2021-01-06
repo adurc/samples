@@ -15,4 +15,6 @@ type User @mssql_entity(schema: "usr") {
   activeAgencyId: ID
   activeAgency: Agency @mssql_manyToOne(joinColumn: "activeAgencyId", inverseColumn: "id")
   agencies: [Agency] @mssql_manyToMany(manyEntity: "UserAgency", joinColumn: "id", manyJoinColumn: "userId", manyInverseColumn: "agencyId", inverseColumn: "id")
+
+
 }
