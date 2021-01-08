@@ -5,7 +5,7 @@ const { ReactAdminExposure } = require('@adurc/exposure-react-admin');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const builder = require('./adurc-builder');
+const builder = require('./adurc-builder').default;
 
 async function bootstrap() {
     const app = express();
@@ -21,7 +21,18 @@ async function bootstrap() {
     ));
 
     builder.use(function* customGenerator(context) {
-        context.logger.debug('[sample] customer generator: builder before init')
+        context.logger.debug('[sample] customer generator: builder before init');
+
+        context.addMiddleware({
+            action: async (req, next) => {
+                const startAt = new Date();
+                await next();
+                const endAt = new Date();
+                const elapsed = endAt - startAt;
+                context.logger.info(`[sample] invoked model ${req.model.name}, method: ${req.method} - elapsed: ${elapsed}`);
+            }
+        });
+
         yield BuilderStage.OnInit;
         context.logger.debug('[sample] customer generator: models found ' + context.models.length);
     });
@@ -36,7 +47,7 @@ async function bootstrap() {
 
     console.log('[sample] Example using adurc directly like prisma:');
 
-    const users = await adurc.user.findMany({
+    const users = await adurc.client.user.findMany({
         select: {
             name: true,
         },

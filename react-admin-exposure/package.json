@@ -10,10 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@adurc/core": "^0.1.6",
-    "@adurc/driver-mssql": "^0.1.8",
-    "@adurc/exposure-react-admin": "^0.1.6",
-    "@adurc/introspector-graphql": "^0.1.6",
+    "@adurc/core": "^0.1.10",
+    "@adurc/driver-mssql": "^0.1.9",
+    "@adurc/exposure-react-admin": "^0.1.8",
+    "@adurc/introspector-graphql": "^0.1.7",
     "apollo-server-express": "^2.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1"

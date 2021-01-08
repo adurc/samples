@@ -1,4 +1,4 @@
-const { AdurcBuilder } = require('@adurc/core/dist/builder');
+const { AdurcBuilder } = require('@adurc/core');
 const { SqlServerDriver } = require('@adurc/driver-mssql');
 const { GraphQLIntrospector } = require('@adurc/introspector-graphql');
 
