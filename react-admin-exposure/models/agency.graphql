@@ -3,6 +3,10 @@ type AgencyType @mssql_entity(schema: "cus"){
   name: String!
 }
 
+
+@control_map(role:22)
+@control_grant(role: "srv-admin", action: "create", attributes: "*")
+@control_grant(role: "org-admin", action: "create", attributes: "*, !organizationId", own: { sourceContextField: "user.orgId", destModelField: "organizationId" })
 type Agency @mssql_entity(schema: "cus") {
   id: ID! @ra_pk @mssql_column(primary: true, identity: true)
   name: String!

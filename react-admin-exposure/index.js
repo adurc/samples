@@ -22,6 +22,15 @@ async function bootstrap() {
 
     builder.use(function* customGenerator(context) {
         context.logger.debug('[sample] customer generator: builder before init')
+        context.addMiddleware({
+            action: async (req, next) => {
+                const startAt = new Date();
+                await next();
+                const endAt = new Date();
+                const elapsed = endAt - startAt;
+                context.logger.info(`[sample] request action - Model: ${req.model.name}, Method: ${req.method}, Elapsed: ${elapsed}`);
+            }
+        });
         yield BuilderStage.OnInit;
         context.logger.debug('[sample] customer generator: models found ' + context.models.length);
     });
@@ -48,7 +57,7 @@ async function bootstrap() {
             }
         }
     });
-    
+
     for (const user of users) {
         console.log(`[sample] User ${JSON.stringify(user)}`);
     }
